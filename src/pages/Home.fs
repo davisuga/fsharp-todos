@@ -11,6 +11,10 @@ let Home() =
      let (title, setTitle) = React.useState("")
      let (description, setDescription) = React.useState("")
 
+     let onSubmit _ = 
+          setTodos(list.Cons( {title = title; description = description}, todos))
+          setTitle("")
+          setDescription("")
 
      Html.div [prop.children [
           Html.div[
@@ -26,6 +30,11 @@ let Home() =
                          prop.className "description"
                          prop.value description // string
                          prop.onChange setDescription // (string -> unit)
+                    ];
+                    Html.button [
+                         prop.className "submit"
+                         prop.onClick onSubmit
+                         prop.text "Add todo"
                     ]
                ]
           ];
